@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krypton Client 1.21.11</title>
+    <!-- Importation d'une police moderne (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Magnifique fond sombre avec un dégradé radial et des tons "Krypton" (cyan/bleu) */
+            background: radial-gradient(circle at top right, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Tâches de couleur floutées en arrière-plan pour un effet "Néon" */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        .blob-1 {
+            top: 5%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: #4facfe;
+        }
+        .blob-2 {
+            bottom: 5%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: #00f2fe;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.1); }
+        }
+
+        /* Conteneur principal avec effet Glassmorphism (verre poli) */
+        .hero-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3.5rem 4rem;
+            text-align: center;
+            max-width: 900px;
+            width: 95%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Titre principal */
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+        }
+
+        /* Badge de version */
+        .version {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.1);
+            color: #00f2fe;
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+        }
+
+        /* Description */
+        .description {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+        }
+
+        /* Section des fonctionnalités */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 220px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* Bouton de téléchargement */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #000;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 1.2rem 3.5rem;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 15px 45px rgba(0, 242, 254, 0.6);
+            transform: scale(1.05) translateY(-2px);
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        .download-btn svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .hero-card { padding: 2rem 1.5rem; }
+            .description { font-size: 1rem; }
+            .features { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Décors d'arrière-plan -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Contenu Principal -->
+    <div class="hero-card">
+        <h1 class="logo">Krypton Client</h1>
+        <div class="version">Version 1.21.11</div>
+        
+        <p class="description">
+            Modules du client Krypton pour DonutSMP : Sus Chunk Finder, Block ESP, combat, auto-farm et plus de 80 fonctionnalités sur Minecraft 1.21.11 (Fabric). Téléchargement gratuit ou accès à vie.
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>80+ modules</h3>
+                <p>Une vaste gamme de fonctionnalités à votre disposition.</p>
+            </div>
+            <div class="feature">
+                <h3>Undetected</h3>
+                <p>Conçu pour une discrétion totale.</p>
+            </div>
+            <div class="feature">
+                <h3>DonutSMP</h3>
+                <p>Optimisé spécifiquement pour le serveur DonutSMP.</p>
+            </div>
+        </div>
+
+        <!-- Le nom du fichier est exact: Krypton Client 1.21.11.jar -->
+        <a href="Krypton Client 1.21.11.jar" class="download-btn" download="Krypton Client 1.21.11.jar">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            Télécharger 
+        </a>
+    </div>
+</body>
+</html>
